@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Register</div>
+        <div class="card-body">
+
+          <form class="form-horizontal" (ngSubmit)="onSubmit()" #createStudentForm="ngForm" *ngIf="!submitted"
+            novalidate>
+
+            <div class="form-group">
+              <label for="name" class="cols-sm-2 control-label">Your Name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter your Name" name="username"  #username="ngModel" required
+                  [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="createStudent.username" />
+
+                </div>
+                <small class="text-danger" [class.d-none]="username.valid || username.untouched">Name is required</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="cols-sm-2 control-label">Your Email</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" #email="ngModel" required
+                  [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="createStudent.email"
+                  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" />
+                </div>
+                <small class="text-danger" [class.d-none]="email.valid || email.untouched">email is required</small>
+                <div *ngIf="email.errors && (email.invalid || email.touched)">
+                    <!-- <small class="text-danger" *ngIf="email.errors.required">Email is required</small>       -->
+                    <small class="text-danger" *ngIf="email.errors.pattern">Email is not valid</small>      
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mobilenumber" class="cols-sm-2 control-label">Mobile number</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="mobile" id="mobile"
+                    placeholder="Enter Mobile Number" #mobile="ngModel" required
+                    [class.is-invalid]="mobile.invalid && mobile.touched" [(ngModel)]="createStudent.mobile" pattern="^\d{10}$"/>
+                </div>
+                <small class="text-danger" [class.d-none]="mobile.valid || mobile.untouched">Mobile number is required</small>
+                <div *ngIf="mobile.errors && (mobile.invalid || mobile.touched)">
+                    <!-- <small class="text-danger" *ngIf="mobile.errors.required">Phone number is required</small>       -->
+                    <small class="text-danger" *ngIf="mobile.errors.pattern">Phone number must be 10 digits</small>      
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password" class="cols-sm-2 control-label">Password</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input type="password" class="form-control" name="password" id="password"
+                    placeholder="Enter your Password" #password="ngModel" required
+                    [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="createStudent.password" />
+                </div>
+              </div>
+              <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</small>
+            </div>
+            <div class="form-group ">
+              <button type="submit" class="btn btn-primary btn-lg btn-block login-button" [disabled]="createStudentForm.form.invalid || topicHasError">Register</button>
+            </div>
+            <div class="login-register">
+              <a routerLink="/login">Login</a>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
